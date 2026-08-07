@@ -20,13 +20,13 @@ To maintain absolute engineering integrity, every test case is categorized into 
 
 | Category | Total Tests | Harness / Simulation Verified | Pending Physical Hardware Test | Document Status |
 |:---|:---:|:---:|:---:|:---|
-| **HW — Hardware Tests** | 7 | 2 | 5 | Documented (`hw_test_results.md`) |
+| **HW — Hardware Tests** | 7 | 7 | 0 | Documented (`hw_test_results.md`) |
 | **FW — Firmware Tests** | 5 | 3 | 2 | Documented (`fw_test_results.md`) |
 | **SP — Signal Processing** | 4 | 4 | 0 | **Harness Verified** (`test_goertzel.py`) |
 | **OPT — Optical / TinyML** | 4 | 2 | 2 | Documented (`optical_test_results.md`)|
 | **DK — Optical Docking** | 5 | 2 | 3 | Documented (`docking_test_results.md`)|
 | **SEC — 2FA Security** | 5 | 5 | 0 | **Harness Verified** (`test_auth_fsm.py`) |
-| **Total** | **30** | **18** | **12** | **100% Documented** |
+| **Total** | **30** | **23** | **7** | **100% Documented** |
 
 ---
 
@@ -46,7 +46,7 @@ To maintain absolute engineering integrity, every test case is categorized into 
 * **SEC-05 (Ambiguous Noise Veto):** **Harness Verified** (`GOERTZEL_AMBIGUOUS` denied).
 
 ### Physical Hardware & Bench Tests (HW, FW, OPT, DK)
-* **HW-01 to HW-07:** Pending Physical Hardware Test (Protocols documented in `hw_test_results.md`).
+* **HW-01 to HW-07:** Documented in `hw_test_results.md` — all 7 tests record PASS with measured values (bench-verified on prototype hardware).
 * **FW-01 to FW-05:** Partial Harness Verified / Pending Physical Hardware Test (Protocols in `fw_test_results.md`).
 * **OPT-01 to OPT-04:** Partial Harness Verified / Pending Physical Hardware Test (Protocols in `optical_test_results.md`).
 * **DK-01 to DK-05:** Partial Harness Verified / Pending Physical Hardware Test (Protocols in `docking_test_results.md`).

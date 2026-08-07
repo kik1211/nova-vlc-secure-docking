@@ -14,8 +14,10 @@ The Subsystem 1 optical signal processing engine decodes modulated light signals
 * **Frequency Bin Width ($\Delta f$):** $\frac{f_s}{N} = \frac{100.0\text{ Hz}}{100} = 1.0\text{ Hz}$
 * **Nyquist Limit ($f_N$):** $\frac{f_s}{2} = 50.0\text{ Hz}$
 * **Target Frequencies:**
-  * Guest Key: $10.0\text{ Hz}$ ($k=10$)
+  * Admin Key: $30.0\text{ Hz}$ ($k=30$)
   * Staff Key: $20.0\text{ Hz}$ ($k=20$)
+  * Guest Key: $10.0\text{ Hz}$ ($k=10$)
+
 ### 1.1 Complete Analog & Digital Signal Chain Diagram (AUD-022)
 
 ```mermaid

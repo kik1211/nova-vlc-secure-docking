@@ -14,10 +14,6 @@
 
 #include "classifier_wrapper.h"
 
-#include <Arduino.h>
-
-#include <NOVA_Secure_Lock_inferencing.h>
-
 #include "../config.h"
 
 /* === Logging Abstraction (AUD-008) === */
