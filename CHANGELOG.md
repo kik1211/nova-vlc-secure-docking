@@ -18,7 +18,7 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - System Design Freeze Specification v1.0
 - Engineering Feasibility Review (Phase 0)
 - Repository Blueprint v1.0
-- Public GitHub release with full documentation suite (`docs/`, `knowledge-base/`, `validation/`, `hardware/`)
+- Public GitHub release with full documentation suite (`docs/`, `validation/`, `hardware/`)
 
 ---
 
