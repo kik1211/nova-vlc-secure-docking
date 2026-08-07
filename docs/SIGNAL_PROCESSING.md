@@ -20,17 +20,17 @@ The Subsystem 1 optical signal processing engine decodes modulated light signals
 
 ```mermaid
 graph LR
-    subgraph 1. Optical Transmitter
+    subgraph SG1 ["1. Optical Transmitter"]
         TX[LED Beacon Transmitter] -->|Modulated Light 10/20/30 Hz| CHAN[Free-Space Optical Channel]
     end
 
-    subgraph 2. Analog Receiver Front-End
+    subgraph SG2 ["2. Analog Receiver Front-End"]
         CHAN -->|Optical Flux E_e| PD[BPW34 PIN Photodiode]
         PD -->|Photocurrent I_pd| TIA[LM358 Transimpedance Amp Rf=100k]
         TIA -->|Analog Voltage V_out| LPF[RC Low-Pass Filter fc=48.2Hz]
     end
 
-    subgraph 3. Digital Sampling & Compute Core (ESP32-S3)
+    subgraph SG3 ["3. Digital Sampling & Compute Core (ESP32-S3)"]
         LPF -->|Filtered Voltage 0-3.1V| ADC[ESP32-S3 ADC1_CH0 GPIO 1]
         ADC -->|100 Hz esp_timer ISR| BUF[100-Sample Float Buffer]
         
@@ -38,7 +38,7 @@ graph LR
         BUF -->|Normalized Buffer| ML[Edge Impulse 1D-CNN]
     end
 
-    subgraph 4. Decision & Physical Actuation
+    subgraph SG4 ["4. Decision & Physical Actuation"]
         DSP -->|DSP Dominant Freq & Ratio| GATE{Authentication FSM 2FA Gate}
         ML -->|ML Confidence >= 85% & Class| GATE
         NFC[PN532 NFC Card Reader] -->|Scanned Card UID Role| GATE

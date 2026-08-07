@@ -39,7 +39,7 @@ The current prototype comprises two independent standalone hardware subsystems d
 
 ```mermaid
 graph TD
-    subgraph Subsystem 1: Secure Access Control (ESP32-S3)
+    subgraph SS1 ["Subsystem 1: Secure Access Control (ESP32-S3)"]
         A[MIFARE NFC Card] -->|13.56 MHz RFID| B[PN532 Reader I2C]
         B -->|Resolved Role| C[Auth State Machine FSM]
         D[Modulated Optical LED] -->|Free-Space Light| E[BPW34 PIN Photodiode]
@@ -56,7 +56,7 @@ graph TD
         M -->|12V DC Pulse| N[Fail-Secure Solenoid Lock]
     end
 
-    subgraph Subsystem 2: Autonomous Optical Docking (ESP32)
+    subgraph SS2 ["Subsystem 2: Autonomous Optical Docking (ESP32)"]
         O[Beacon Light LED] -->|Photocurrent| P[Docking BPW34 Sensor]
         P -->|ADC Read GPIO 34| Q[Alignment Controller]
         Q -->|8-Phase Half-Step| R[ULN2003 Driver + 28BYJ-48 Stepper]

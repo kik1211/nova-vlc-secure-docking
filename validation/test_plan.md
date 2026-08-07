@@ -40,7 +40,7 @@ The validation suite explicitly includes negative testing scenarios to verify ve
 
 | Test ID | Scenario Description | Expected Outcome & Veto Logic | Validation Status |
 |:---|:---|:---|:---:|
-| **SEC-02** | Unregistered NFC Card UID | Instant lockout (`AUTH_REASON_UNKNOWN_CARD`), FSM enters $2.0\text{ s}$ delay | **Harness PASS** |
+| **SEC-02** | Unregistered NFC Card UID | Immediate lockout (`AUTH_REASON_UNKNOWN_CARD`), FSM enters $2.0\text{ s}$ delay | **Harness PASS** |
 | **SEC-03** | Low ML Confidence ($<85\%$) | Vetoes unlock (`AUTH_REASON_ML_LOW_CONFIDENCE`), door remains LOCKED | **Harness PASS** |
 | **SEC-04** | Goertzel Frequency Mismatch | Vetoes unlock (`AUTH_REASON_GOERTZEL_MISMATCH`), door remains LOCKED | **Harness PASS** |
 | **SEC-05** | Ambiguous Optical Spectrum (Ratio $<2.0$) | Vetoes unlock (`AUTH_REASON_GOERTZEL_AMBIGUOUS`), door remains LOCKED | **Harness PASS** |
