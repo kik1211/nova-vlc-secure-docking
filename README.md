@@ -129,12 +129,11 @@ python validation/test_harnesses/test_auth_fsm.py
 | [`docs/TINYML.md`](docs/TINYML.md) | 1D-CNN network architecture, 534-parameter model footprint, tensor arena allocation, and Edge Impulse integration | See [`NOVA_Secure_Lock_inferencing/`](NOVA_Secure_Lock_inferencing/) |
 | [`docs/DOCKING.md`](docs/DOCKING.md) | Two-phase coarse/fine alignment algorithm, 28BYJ-48 motor kinematics, and backlash compensation math | See [`subsystem2_docking/`](subsystem2_docking/) |
 | [`docs/SECURITY_MODEL.md`](docs/SECURITY_MODEL.md) | Threat model, attack vector countermeasures, dual-verdict veto logic, and authentication state machine | See [`subsystem1_secure_access/auth/`](subsystem1_secure_access/auth/) |
+| [`docs/DESIGN_DECISIONS.md`](docs/DESIGN_DECISIONS.md) | Architecture Decision Records (ADR-001 through ADR-008) capturing key technical design trade-offs | See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
 | [`docs/KNOWN_LIMITATIONS.md`](docs/KNOWN_LIMITATIONS.md) | Engineering trade-offs, optical link budget range constraints, LM358 output swing bounds, and gear backlash limits | See [`docs/HARDWARE.md`](docs/HARDWARE.md) |
 | [`docs/VALIDATION_RESULTS.md`](docs/VALIDATION_RESULTS.md) | 30-test execution matrix with strict separation of verified simulation states vs physical bench tests | See [`validation/test_plan.md`](validation/test_plan.md) |
-| [`knowledge-base/MASTER_GUIDE.md`](knowledge-base/MASTER_GUIDE.md) | Master entry point for architecture rationale, interview defense, and documentation roadmap | See [`knowledge-base/DESIGN_DECISIONS.md`](knowledge-base/DESIGN_DECISIONS.md) |
-| [`knowledge-base/DESIGN_DECISIONS.md`](knowledge-base/DESIGN_DECISIONS.md) | Architecture Decision Records (ADR-001 through ADR-008) capturing technical design choices | See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
-| [`knowledge-base/PROJECT_STORY.md`](knowledge-base/PROJECT_STORY.md) | Origins, engineering motivation, and 60-second narrative pitch | See [`README.md §1`](#1-project-story--engineering-motivation) |
-| [`knowledge-base/INTERVIEW_BANK.md`](knowledge-base/INTERVIEW_BANK.md) | Structured technical Q&A across Recruiter, Firmware, DSP/ML, and Security categories | See [`knowledge-base/MASTER_GUIDE.md`](knowledge-base/MASTER_GUIDE.md) |
+| [`docs/TROUBLESHOOTING.md`](docs/TROUBLESHOOTING.md) | Hardware and firmware diagnostic procedures, test points, and fault recovery guidelines | See [`docs/HARDWARE.md`](docs/HARDWARE.md) |
+| [`docs/FUTURE_WORK.md`](docs/FUTURE_WORK.md) | Production security hardening, closed-loop stepper control, and proposed platform extensions | See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
 
 ---
 
