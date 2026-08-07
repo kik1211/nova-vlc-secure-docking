@@ -1,0 +1,73 @@
+name: Firmware Compile Check
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'subsystem1_secure_access/**'
+      - 'subsystem2_docking/**'
+      - 'NOVA_Secure_Lock_inferencing/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'subsystem1_secure_access/**'
+      - 'subsystem2_docking/**'
+
+jobs:
+  compile-subsystem1:
+    name: Compile SS1 (ESP32-S3)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Arduino CLI
+        uses: arduino/setup-arduino-cli@v1
+
+      - name: Install ESP32 board package
+        run: |
+          arduino-cli config init
+          arduino-cli config add board_manager.additional_urls \
+            https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+          arduino-cli core update-index
+          arduino-cli core install esp32:esp32
+
+      - name: Install Adafruit PN532 library
+        run: arduino-cli lib install "Adafruit PN532"
+
+      - name: Install Edge Impulse library (local)
+        run: |
+          mkdir -p ~/Arduino/libraries
+          cp -r NOVA_Secure_Lock_inferencing ~/Arduino/libraries/
+
+      - name: Compile Subsystem 1
+        run: |
+          arduino-cli compile \
+            --fqbn esp32:esp32:esp32s3 \
+            subsystem1_secure_access/subsystem1_secure_access.ino
+
+  compile-subsystem2:
+    name: Compile SS2 (ESP32)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Arduino CLI
+        uses: arduino/setup-arduino-cli@v1
+
+      - name: Install ESP32 board package
+        run: |
+          arduino-cli config init
+          arduino-cli config add board_manager.additional_urls \
+            https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+          arduino-cli core update-index
+          arduino-cli core install esp32:esp32
+
+      - name: Compile Subsystem 2
+        run: |
+          arduino-cli compile \
+            --fqbn esp32:esp32:esp32 \
+            subsystem2_docking/subsystem2_docking.ino
