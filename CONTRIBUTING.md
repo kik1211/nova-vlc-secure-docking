@@ -59,7 +59,7 @@ Key rules:
 
 ---
 
-## Engineering Workflow Pipeline (AUD-029)
+## Engineering Workflow Pipeline
 
 Contributions follow a structured 6-stage engineering pipeline to preserve architecture consistency, memory safety, and signal processing rigor:
 

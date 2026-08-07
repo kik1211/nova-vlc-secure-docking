@@ -1,4 +1,4 @@
-# N.O.V.A. Resume Traceability Matrix (AUD-032)
+# N.O.V.A. Resume Traceability Matrix
 
 > **Document Status:** Official Resume Mapping & Technical Evidence Matrix v1.0  
 > **Author:** Kiruthik R S  

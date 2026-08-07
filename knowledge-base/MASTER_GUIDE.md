@@ -15,7 +15,7 @@ This Knowledge Base is a reference educational repository for the **N.O.V.A.** e
 
 ---
 
-## 1. Knowledge Base Directory Map
+## 2. Knowledge Base Directory Map
 
 ```text
 knowledge-base/

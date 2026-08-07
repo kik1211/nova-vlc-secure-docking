@@ -8,7 +8,7 @@
 > An engineering research prototype demonstrating physical access security and autonomous optical docking using Visible Light Communication (VLC), Near Field Communication (NFC), and TinyML.  
 > **Awarded First Prize at College Project Expo.**
 
-### Key Engineering Benchmarks & Design Specifications (AUD-035)
+### Key Engineering Benchmarks & Design Specifications
 | Performance Metric | Design Target / Verification Status | Significance & Engineering Impact |
 |:---|:---:|:---|
 | **ADC Sampling Target** | $100.0\text{ Hz}$ Target ($T_s = 10.000\text{ ms}$) | Hardware timer `esp_timer` ISR minimizes software sampling jitter |
@@ -20,7 +20,7 @@
 
 ---
 
-## 1. Project Story & Engineering Motivation (AUD-026)
+## 1. Project Story & Engineering Motivation
 
 Physical access control systems rely heavily on Radio Frequency (RF) technologies like RFID, Bluetooth, or Wi-Fi. However, RF signals penetrate walls, are vulnerable to distant eavesdropping, RF relay attacks, and signal jamming. **N.O.V.A.** (Navigational Optical Verification & Authentication) was created to demonstrate a physically secure, localized alternative by pairing **Near Field Communication (NFC)** with directional **Visible Light Communication (VLC)**.
 
@@ -32,7 +32,7 @@ Key engineering milestones of the project include:
 
 ---
 
-## 2. Visual Overview & Signal Flow (AUD-025)
+## 2. Visual Overview & Signal Flow
 
 ### 2.1 Overall System Architecture
 The current prototype comprises two independent standalone hardware subsystems designed with complete noise isolation:
@@ -119,7 +119,7 @@ python validation/test_harnesses/test_auth_fsm.py
 
 ---
 
-## 5. Documentation Reference Index (AUD-027)
+## 5. Documentation Reference Index
 
 | Document | Purpose & Key Topics | Cross-References |
 |:---|:---|:---|
@@ -136,15 +136,15 @@ python validation/test_harnesses/test_auth_fsm.py
 
 ---
 
-## 6. Recommended GitHub Repository Topics (AUD-028)
+## 6. Repository Topics
 
-To maximize discoverability across GitHub search and topic indexing, the following topics are designated for this repository:
+This repository is indexed under the following GitHub topics for discoverability:
 
-`embedded-systems` • `esp32` • `esp32-s3` • `visible-light-communication` • `vlc` • `tinyml` • `edge-impulse` • `goertzel` • `nfc` • `signal-processing` • `autonomous-docking` • `electronics` • `robotics` • `iot` • `cpp` • `arduino`
+`embedded-systems` • `esp32` • `esp32-s3` • `visible-light-communication` • `vlc` • `tinyml` • `edge-impulse` • `goertzel` • `nfc` • `signal-processing` • `autonomous-docking` • `embedded-security` • `electronics` • `iot` • `cpp` • `arduino`
 
 ---
 
-## 7. Frequently Asked Questions (FAQ) (AUD-031)
+## 7. Frequently Asked Questions (FAQ)
 
 #### Q1: Why combine the Goertzel DSP algorithm with a TinyML 1D-CNN classifier?
 **Answer:** Neural network classifiers are probabilistic and can misclassify under unexpected lighting flicker or noise. The Goertzel algorithm provides a fast ($<1\text{ ms}$), deterministic mathematical check for target frequency magnitudes. Combining both in a **Dual-Verdict Gate** ensures access is granted ONLY when both algorithms independently confirm the optical key.

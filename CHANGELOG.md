@@ -7,7 +7,7 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
-## [Unreleased]
+## [1.0.0] — 2026-08-07
 
 ### Added
 - Full Phase 2 implementation & verification: Subsystem 1 (HAL, Goertzel DSP, TinyML, 2FA FSM) and Subsystem 2 (Docking Stepper & Alignment Controller) (Phases 2.1–2.7)
@@ -18,8 +18,10 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - System Design Freeze Specification v1.0
 - Engineering Feasibility Review (Phase 0)
 - Repository Blueprint v1.0
+- Public GitHub release with full documentation suite (`docs/`, `knowledge-base/`, `validation/`, `hardware/`)
 
 ---
+
 
 ## [0.0.1] — 2026-08-07
 

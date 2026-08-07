@@ -1,4 +1,4 @@
-# N.O.V.A. Hardware & Firmware Troubleshooting Guide (AUD-034)
+# N.O.V.A. Hardware & Firmware Troubleshooting Guide
 
 > **Document Status:** Official Hardware & Firmware Diagnostic Guide v1.0  
 > **Author:** Kiruthik R S  
