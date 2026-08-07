@@ -1,6 +1,6 @@
 # N.O.V.A. — Navigational Optical Verification & Authentication
 
-[![Compile Check](https://github.com/rskir/VLC/actions/workflows/compile_check.yml/badge.svg)](https://github.com/rskir/VLC/actions/workflows/compile_check.yml)
+[![Compile Check](https://github.com/kik1211/nova-vlc-secure-docking/actions/workflows/compile_check.yml/badge.svg)](https://github.com/kik1211/nova-vlc-secure-docking/actions/workflows/compile_check.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-ESP32--S3%20%7C%20ESP32-blue.svg)](docs/HARDWARE.md)
 [![Status](https://img.shields.io/badge/Status-v1.0.0--Prototype-success.svg)](CHANGELOG.md)
@@ -20,7 +20,7 @@
 
 ---
 
-## 1.1 Project Story & Engineering Motivation (AUD-026)
+## 1. Project Story & Engineering Motivation (AUD-026)
 
 Physical access control systems rely heavily on Radio Frequency (RF) technologies like RFID, Bluetooth, or Wi-Fi. However, RF signals penetrate walls, are vulnerable to distant eavesdropping, RF relay attacks, and signal jamming. **N.O.V.A.** (Navigational Optical Verification & Authentication) was created to demonstrate a physically secure, localized alternative by pairing **Near Field Communication (NFC)** with directional **Visible Light Communication (VLC)**.
 
