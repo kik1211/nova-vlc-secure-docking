@@ -1,0 +1,6 @@
+Component,Quantity,Purpose,EstPriceINR,Source,Notes
+ESP32 DevKit,1,Docking MCU,350-600,Robu.in / Robocraze,
+28BYJ-48 + ULN2003,1 set,Stepper drive platform,120-200,Robu.in,
+BPW34 Photodiode,1+,Rotating optical sensor,30-60 each,QuartzComponents,
+Red LED 630nm,1+,Fixed optical beacon,5-10 each,Any electronics shop,
+100nF Capacitor,1,VCC decoupling,2-5,Any electronics shop,

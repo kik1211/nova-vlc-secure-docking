@@ -1,0 +1,13 @@
+Component,Quantity,Purpose,EstPriceINR,Source,Notes
+ESP32-S3 DevKit,1,Main MCU,500-900,Robu.in / Amazon India,
+PN532 NFC Module,1,ISO14443A NFC reader,400-700,Robu.in / ElectronicsComp,
+BPW34 Photodiode,1,Optical signal receiver,30-60,QuartzComponents,
+LM358 DIP-8,1,Transimpedance amplifier,5-15,Any electronics shop,
+1M Resistor,1,TIA feedback Rf,1-2,Any electronics shop,
+4.7pF Capacitor,1,TIA stability Cf,2-5,Any electronics shop,
+33k Resistor,1,AA filter R,1-2,Any electronics shop,
+100nF Capacitor,2,AA filter C + VCC decoupling,2-5,Any electronics shop,
+5V Relay Module,1,Solenoid galvanic isolation,50-100,Robu.in,
+12V Solenoid Lock,1,Door locking mechanism,300-600,Amazon India,
+MIFARE Classic 1K Cards,3+,NFC authentication tokens,50-100 per 5,Amazon India,
+Red LED 630nm,1+,Optical beacon,5-10,Any electronics shop,
