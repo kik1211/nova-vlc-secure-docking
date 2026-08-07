@@ -15,36 +15,19 @@ This Knowledge Base is a reference educational repository for the **N.O.V.A.** e
 
 ---
 
-## 2. Knowledge Base Directory Map
+## 2. Knowledge Base Modules & Documentation Index
 
-```text
-knowledge-base/
-├── MASTER_GUIDE.md                    ← Single entry point and study roadmap
-├── DESIGN_DECISIONS.md                ← Decision log & alternatives (ADRs)
-│
-├── 01_SYSTEM/                         ← Architecture & subsystem boundaries
-├── 02_HARDWARE/                       ← Component-level datasheets & pinouts
-├── 03_ELECTRONICS/                    ← TIA, photodiode, RC filter derivations
-├── 04_ESP32/                          ← ESP32/ESP32-S3 peripheral & memory map
-├── 05_EMBEDDED/                       ← Non-blocking FSM & esp_timer patterns
-├── 06_SIGNAL_PROCESSING/              ← Sampling theory & DFT fundamentals
-├── 07_FFT/                            ← FFT algorithms & Edge Impulse pipeline
-├── 08_GOERTZEL/                       ← Mathematical derivation of Goertzel DFT
-├── 09_TINYML/                         ← Neural network architecture & inference
-├── 10_VLC/                            ← Visible Light Communication theory
-├── 11_SECURITY/                       ← Threat model & 2FA dual-verdict gate
-├── 12_DOCKING/                        ← Two-phase optical alignment & stepper control
-├── 13_DEBUGGING/                      ← Serial logic analyzer & oscilloscopes
-├── 14_FAILURE_ANALYSIS/               ← FMEA & noise mitigation
-├── 15_EXPERIMENT_LOG/                 ← Lab notebook & historical prototype logs
-├── 16_CHEATSHEETS/                    ← Quick-reference one-pagers
-├── 17_GLOSSARY/                       ← Technical glossary of terms
-├── 18_INTERVIEW_QA/                   ← Multi-tier technical interview bank
-├── 19_VIVA_QA/                        ← Academic viva defense Q&A
-├── 20_PRESENTATION/                   ← Presentation slide outlines & scripts
-├── 21_PATENT_NOTES/                   ← Intellectual property & novelty notes
-└── 22_STUDY_ROADMAP/                  ← Learning roadmap for engineering students
-```
+| Module | Description & Focus | Target Audience |
+|:---|:---|:---|
+| [`PROJECT_STORY.md`](PROJECT_STORY.md) | Origin story, motivation, and 60-second elevator pitch | Recruiters & Hiring Managers |
+| [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md) | Architecture Decision Records (ADR-001 through ADR-008) capturing key technical trade-offs | Embedded Engineers & Systems Architects |
+| [`INTERVIEW_BANK.md`](INTERVIEW_BANK.md) | Structured technical Q&A across Recruiter, Firmware, DSP/ML, and Security categories | Technical Interviewers & Candidates |
+| [`docs/ARCHITECTURE.md`](../docs/ARCHITECTURE.md) | System boundaries, interface tables, and subsystem independence specs | Systems Engineers |
+| [`docs/HARDWARE.md`](../docs/HARDWARE.md) | Component BOM, pinout tables, TIA schematic, and electrical operating limits | Hardware & Electronics Engineers |
+| [`docs/SIGNAL_PROCESSING.md`](../docs/SIGNAL_PROCESSING.md) | 100 Hz sampling theory, Goertzel IIR DFT mathematical derivation, and spectral leakage proofs | DSP & Signal Processing Engineers |
+| [`docs/TINYML.md`](../docs/TINYML.md) | 1D-CNN network architecture, parameter footprint, and Edge Impulse SDK integration | TinyML & Edge AI Engineers |
+| [`docs/DOCKING.md`](../docs/DOCKING.md) | Two-phase coarse/fine optical alignment algorithm, motor kinematics, and backlash math | Robotics & Control Engineers |
+| [`docs/SECURITY_MODEL.md`](../docs/SECURITY_MODEL.md) | Threat model, attack vectors, and dual-verdict veto authentication state machine | Embedded Security Engineers |
 
 ---
 
@@ -52,10 +35,10 @@ knowledge-base/
 
 ### Before a Technical Interview
 * Read [`PROJECT_STORY.md`](PROJECT_STORY.md) for the 60-second narrative pitch.
-* Review [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md) to defend why two microcontrollers were used instead of one.
-* Study [`18_INTERVIEW_QA/interview_bank.md`](18_INTERVIEW_QA/interview_bank.md) for Goertzel vs. FFT complexity trade-offs ($O(N)$ vs. $O(N \log N)$).
+* Review [`DESIGN_DECISIONS.md`](DESIGN_DECISIONS.md) to defend why two microcontrollers were used instead of one (ADR-001).
+* Study [`INTERVIEW_BANK.md`](INTERVIEW_BANK.md) for Goertzel vs. FFT complexity trade-offs ($O(N)$ vs. $O(N \log N)$).
 
-### Before an Academic Viva / Defense
-* Review [`03_ELECTRONICS/`](03_ELECTRONICS/) for the LM358 TIA gain derivation ($V_{\text{out}} = I_{\text{pd}} \cdot R_f$).
-* Review [`08_GOERTZEL/`](08_GOERTZEL/) for why zero spectral leakage occurs at $N=100, f_s=100\text{ Hz}$.
-* Review [`19_VIVA_QA/`](19_VIVA_QA/) for faculty defense strategy.
+### Before an Architecture Review
+* Review [`docs/HARDWARE.md`](../docs/HARDWARE.md) for the LM358 TIA gain derivation ($V_{\text{out}} = I_{\text{pd}} \cdot R_f$).
+* Review [`docs/SIGNAL_PROCESSING.md`](../docs/SIGNAL_PROCESSING.md) for why zero spectral leakage occurs at $N=100, f_s=100\text{ Hz}$.
+* Review [`docs/SECURITY_MODEL.md`](../docs/SECURITY_MODEL.md) for the dual-verdict authentication gate logic.

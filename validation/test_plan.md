@@ -34,7 +34,7 @@
 
 ---
 
-## Negative Test Cases & Edge Conditions (AUD-015)
+## Negative Test Cases & Edge Conditions
 
 The validation suite explicitly includes negative testing scenarios to verify veto logic and fault recovery:
 
@@ -49,7 +49,7 @@ The validation suite explicitly includes negative testing scenarios to verify ve
 
 ---
 
-## Regression Testing Strategy & Automated Test Suite (AUD-018)
+## Regression Testing Strategy & Automated Test Suite
 
 To prevent regressions during firmware updates or configuration tuning, automated mathematical verification scripts are executed before every release:
 

@@ -72,7 +72,7 @@
 
 ---
 
-## 3. Engineering Decision Timeline & Architectural Evolution (AUD-037)
+## 3. Engineering Decision Timeline & Architectural Evolution
 
 ```mermaid
 timeline

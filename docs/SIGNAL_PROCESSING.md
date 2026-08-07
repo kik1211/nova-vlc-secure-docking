@@ -18,7 +18,7 @@ The Subsystem 1 optical signal processing engine decodes modulated light signals
   * Staff Key: $20.0\text{ Hz}$ ($k=20$)
   * Guest Key: $10.0\text{ Hz}$ ($k=10$)
 
-### 1.1 Complete Analog & Digital Signal Chain Diagram (AUD-022)
+### 1.1 Complete Analog & Digital Signal Chain Diagram
 
 ```mermaid
 graph LR
@@ -74,7 +74,7 @@ where $\omega_k = \frac{2\pi k}{N} = \frac{2\pi f_{\text{target}}}{f_s}$.
 4. **Compute Magnitude Squared ($|X[k]|^2$):**
    $$|X[k]|^2 = s[1]^2 + s[2]^2 - \text{coeff} \cdot s[1] \cdot s[2]$$
 
-### 2.1 Computational Complexity & Execution Time Analysis (AUD-016)
+### 2.1 Computational Complexity & Execution Time Analysis
 
 For target frequency evaluation across $K$ bins ($K=3$ for $10\text{ Hz}, 20\text{ Hz}, 30\text{ Hz}$) over $N$ samples ($N=100$):
 
@@ -89,7 +89,7 @@ For target frequency evaluation across $K$ bins ($K=3$ for $10\text{ Hz}, 20\tex
 
 ---
 
-## 3. Coherent Sampling & Real-World Hardware Spectral Leakage (AUD-006)
+## 3. Coherent Sampling & Real-World Hardware Spectral Leakage
 
 Spectral leakage occurs in Discrete Fourier Transform (DFT) analysis when the input signal frequency $f_{\text{sig}}$ does not align exactly with an integer bin index $k$.
 

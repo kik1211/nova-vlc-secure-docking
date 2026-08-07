@@ -2,8 +2,6 @@
 
 > Planned improvements and research directions for future versions of N.O.V.A.
 
-<!-- STATUS: Placeholder — to be completed in Phase 3. -->
-
 ---
 
 ## Production Security Hardening
@@ -40,4 +38,4 @@
 
 | Version | Date | Change |
 |:---|:---|:---|
-| 0.1 | 2026-08-07 | Placeholder created (Phase 2.1) |
+| 1.0 | 2026-08-07 | Initial future engineering roadmap |

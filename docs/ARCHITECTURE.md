@@ -12,7 +12,7 @@ Navigational Optical Verification & Authentication (**N.O.V.A.**) is an embedded
 * **Subsystem 1 — VLC-Based Two-Factor Access Control (ESP32-S3):** Dual-verdict physical authentication requiring both NFC credential verification and optical key classification (10 Hz, 20 Hz, 30 Hz).
 * **Subsystem 2 — Autonomous Optical Docking (ESP32):** Two-phase optical intensity scanning platform driven by a unipolar stepper motor for autonomous angular alignment.
 
-### 1.2 Design Freeze & System Status Matrix (AUD-024)
+### 1.2 Design Freeze & System Status Matrix
 To guide future open-source contributors and patent reviewers, system architectural features are classified into frozen, experimental, and proposed states:
 
 | Architecture Domain | Feature / Decision | Status Classification | Engineering Rationale |
@@ -57,7 +57,7 @@ graph TD
 
 ---
 
-## 3. Subsystem Boundaries & Formal Interface Specifications (AUD-021)
+## 3. Subsystem Boundaries & Formal Interface Specifications
 
 ### 3.1 Subsystem 1 Interface Specification (VLC Secure Access)
 * **Microcontroller Core:** ESP32-S3 DevKit-C (16MB Flash, 8MB PSRAM, Dual-Core Xtensa LX7 @ 240 MHz).
@@ -97,7 +97,7 @@ graph TD
 
 ---
 
-## 4. Signal Flow & Data Processing Pipelines (AUD-022)
+## 4. Signal Flow & Data Processing Pipelines
 
 ### 4.1 End-to-End Analog & Digital Signal Chain Diagram
 The complete end-to-end signal flow from optical modulation at the beacon transmitter to physical lock actuation is documented in the Mermaid engineering diagram below:
@@ -145,7 +145,7 @@ graph LR
 
 ---
 
-## 5. Intellectual Property & Disclosure Boundary (AUD-036)
+## 5. Intellectual Property & Disclosure Boundary
 
 This repository serves as an open-source technical release and engineering demonstration. To preserve IP clarity for patent review, public elements are formally separated from proprietary/future patentable extensions:
 
@@ -162,7 +162,7 @@ This repository serves as an open-source technical release and engineering demon
 
 ---
 
-## 6. Project Terminology & Glossary (AUD-030)
+## 6. Project Terminology & Glossary
 
 | Term / Abbreviation | Official Engineering Definition | Context & Scope |
 |:---|:---|:---|

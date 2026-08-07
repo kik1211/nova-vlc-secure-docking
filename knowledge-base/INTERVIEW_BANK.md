@@ -1,6 +1,6 @@
 # Technical Interview Preparation Bank — N.O.V.A. Project
 
-> **Knowledge Base Module:** `18_INTERVIEW_QA/interview_bank.md`  
+> **Knowledge Base Module:** `knowledge-base/INTERVIEW_BANK.md`  
 > **Target Roles:** Recruiter Pitch, Embedded Firmware Engineer, DSP / ML Engineer, Hardware / Security Engineer
 
 ---
@@ -48,7 +48,7 @@ Access is granted ONLY if BOTH conditions evaluate to TRUE.
 
 ---
 
-## Category 5: Senior System Architecture & Senior Design Trade-Offs (AUD-033)
+## Category 5: Senior System Architecture & Senior Design Trade-Offs
 
 ### Q8: What are the fundamental architectural limitations of your prototype, and how would you address them in a commercial revision?
 **Answer:**

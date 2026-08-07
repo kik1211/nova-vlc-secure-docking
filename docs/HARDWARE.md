@@ -5,7 +5,7 @@
 
 ---
 
-## 1. Complete Bill of Materials (BOM) & Procurement Guide (AUD-020)
+## 1. Complete Bill of Materials (BOM) & Procurement Guide
 
 ### Subsystem 1: Secure Access Control
 | Item | Component | Manufacturer / MPN | Package | Suppliers (India / Global) | Target Cost (INR) | Acceptable Substitutes |
@@ -82,7 +82,7 @@
 
 ---
 
-## 5. Component Selection Rationale & Engineering Justifications (AUD-019)
+## 5. Component Selection Rationale & Engineering Justifications
 
 ### 5.1 ESP32-S3 DevKit-C N16R8 (Subsystem 1 MCU)
 * **Why Selected:** Chosen as the primary processing core for Subsystem 1 due to its Xtensa 32-bit dual-core LX7 microcontroller running at $240\text{ MHz}$, integrated vector instructions (ESP-DSP), high-resolution hardware timers (`esp_timer`), and high flash/PSRAM memory bandwidth ($16\text{ MB}$ Flash, $8\text{ MB}$ PSRAM).
@@ -142,7 +142,7 @@
 
 ---
 
-## 6. Consolidated Electrical Operating Limits & Absolute Maximum Ratings (AUD-023)
+## 6. Consolidated Electrical Operating Limits & Absolute Maximum Ratings
 
 The following table provides datasheet-supported electrical parameters, operating ranges, and absolute maximum ratings for all hardware components in N.O.V.A.
 
