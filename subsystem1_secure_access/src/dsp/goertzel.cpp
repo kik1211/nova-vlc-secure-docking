@@ -24,7 +24,7 @@
  */
 
 #include "goertzel.h"
-#include "../config.h"
+#include "../../config.h"
 
 #include <math.h>
 

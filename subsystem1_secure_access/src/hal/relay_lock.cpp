@@ -10,7 +10,7 @@
 
 #include <Arduino.h>
 
-#include "../config.h"
+#include "../../config.h"
 
 /* === Private Module State === */
 static bool     s_isUnlocked = false;

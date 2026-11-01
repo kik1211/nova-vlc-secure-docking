@@ -14,7 +14,7 @@
 
 #include "classifier_wrapper.h"
 
-#include "../config.h"
+#include "../../config.h"
 
 /* === Logging Abstraction (AUD-008) === */
 #if defined(DEBUG) || defined(ARDUINO)

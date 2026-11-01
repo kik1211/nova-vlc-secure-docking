@@ -11,7 +11,7 @@
 #include <Arduino.h>
 #include <esp_timer.h>
 
-#include "../config.h"
+#include "../../config.h"
 
 /* === Private Module State === */
 static float    s_sampleBuffer[SAMPLE_COUNT];

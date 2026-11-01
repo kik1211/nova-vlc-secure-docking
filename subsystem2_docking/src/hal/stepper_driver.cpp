@@ -23,7 +23,7 @@
 
 #include <Arduino.h>
 
-#include "../config.h"
+#include "../../config.h"
 
 /* === Private Constants === */
 

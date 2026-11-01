@@ -14,7 +14,7 @@
 #include <Arduino.h>
 #include <string.h>
 
-#include "../config.h"
+#include "../../config.h"
 #include "../hal/nfc_reader.h"
 #include "../hal/relay_lock.h"
 #include "../hal/optical_sampler.h"

@@ -27,7 +27,7 @@
 
 #include <Arduino.h>
 
-#include "../config.h"
+#include "../../config.h"
 #include "../hal/stepper_driver.h"
 #include "../hal/photodiode_adc.h"
 

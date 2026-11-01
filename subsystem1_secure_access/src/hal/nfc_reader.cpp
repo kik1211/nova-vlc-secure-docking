@@ -13,7 +13,7 @@
 
 #include <Adafruit_PN532.h>
 
-#include "../config.h"
+#include "../../config.h"
 
 /* === Private Module State === */
 static Adafruit_PN532 s_nfc(-1, -1); // I2C mode; IRQ/RESET not used
