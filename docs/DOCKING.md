@@ -1,17 +1,14 @@
 # N.O.V.A. Subsystem 2 — Autonomous Optical Docking Algorithm
 
-> **Document Status:** Official Docking Specification v1.0  
-> **Source of Truth:** Design Freeze Specification §7, `docking/alignment_controller.cpp`, and `validation/results/docking_test_results.md`
-
----
-
 ## 1. Overview & Operational Concept
 
-Subsystem 2 is a proof-of-concept autonomous optical alignment platform inspired by spacecraft docking systems. An ESP32 rotates a platform mounted with a BPW34 photodiode through a unipolar 28BYJ-48 stepper motor driven by a ULN2003 driver module, mapping incoming optical intensity across a $360^\circ$ sweep.
+Subsystem 2 is an autonomous optical alignment platform. An ESP32 rotates a mounting platform carrying a BPW34 PIN photodiode using a unipolar 28BYJ-48 stepper motor driven by a ULN2003A Darlington driver array. The system maps incoming optical intensity across a $360^\circ$ sweep to find the heading of maximum optical power.
+
+The alignment logic is implemented in [`subsystem2_docking/src/docking/alignment_controller.cpp`](../subsystem2_docking/src/docking/alignment_controller.cpp) and configured via [`subsystem2_docking/config.h`](../subsystem2_docking/config.h).
 
 ---
 
-## 2. Two-Phase Coarse-Fine Scanning Algorithm
+## 2. Two-Phase Scanning Algorithm
 
 ```text
                   START SCAN
@@ -19,9 +16,9 @@ Subsystem 2 is a proof-of-concept autonomous optical alignment platform inspired
                       ▼
 ┌───────────────────────────────────────────┐
 │ Phase 1: Coarse 360° Sweep                │
-│ - 128 Positions (2.8125° / 32 steps)      │
-│ - 16x Oversampled ADC Read                │
-│ - Record Max Intensity & Index            │
+│ - 128 Points (2.8125° / 32 half-steps)    │
+│ - 16x Oversampled ADC Read per point      │
+│ - Record Max Intensity & Peak Position    │
 └─────────────────────┬─────────────────────┘
                       │
                       ▼
@@ -34,7 +31,7 @@ Subsystem 2 is a proof-of-concept autonomous optical alignment platform inspired
 ┌───────────────────────┐ ┌───────────────────────┐
 │ Phase 2: Fine Sweep   │ │ Declare Failure       │
 │ - Range: Peak +-22.5° │ │ ALIGN_STATUS_FAILED   │
-│ - 1 Step Resolution   │ │ Motor Coils Released  │
+│ - 1 Half-Step Res     │ │ Motor Coils Released  │
 │ - 32x ADC Oversample  │ └───────────────────────┘
 │ - Record Max Angle    │
 └───────────┬───────────┘
@@ -49,29 +46,38 @@ Subsystem 2 is a proof-of-concept autonomous optical alignment platform inspired
             ▼
 ┌───────────────────────────────────────────┐
 │ Motor Release (`stepper_release`)         │
-│ - De-energize ULN2003 coils               │
+│ - De-energize ULN2003 coils (0 mW idle)   │
 │ - Gear friction holds platform angle      │
 └───────────────────────────────────────────┘
 ```
 
 ---
 
-## 3. Algorithm Specification & Parameters
+## 3. Algorithm Specifications & Parameters
 
-| Parameter | Specification | Value |
+| Parameter | Specification | Engineering Value |
 |:---|:---|:---|
-| Total Resolution | Half-Step Mode | $4096\text{ half-steps / rev}$ ($0.08789^\circ / \text{step}$) |
-| Coarse Sweep Points | 128 Points | 32 steps between points ($2.8125^\circ$ spacing) |
-| Coarse Oversampling | 16 Samples | Averaged ADC reading per coarse point |
-| Fine Sweep Window | $\pm 8$ Coarse Points | $\pm 256\text{ half-steps}$ ($\pm 22.5^\circ$ around peak) |
-| Fine Oversampling | 32 Samples | Averaged ADC reading per fine step |
-| Backlash Compensation | $16\text{ half-steps}$ | $1.406^\circ$ CCW overshoot before final CW alignment |
-| Minimum Threshold | 200 ADC Counts | Minimum light intensity required for valid beacon |
+| **Motor Drive Mode** | 8-Phase Half-Step Sequence | $4096\text{ half-steps / rev}$ ($0.08789^\circ / \text{step}$) |
+| **Coarse Sweep Points** | 128 Discrete Positions | 32 half-steps between points ($2.8125^\circ$ spacing) |
+| **Coarse Oversampling** | 16 Samples | Averaged ADC reading per coarse position |
+| **Fine Sweep Window** | $\pm 8$ Coarse Points | $\pm 256\text{ half-steps}$ ($\pm 22.5^\circ$ around coarse peak) |
+| **Fine Resolution** | 1 Half-Step | Single-step angular resolution ($0.08789^\circ$) |
+| **Fine Oversampling** | 32 Samples | Averaged ADC reading per fine step |
+| **Backlash Compensation** | 16 Half-Steps | $1.406^\circ$ CCW overshoot before final CW alignment |
+| **Detection Threshold** | 200 ADC Counts | Minimum light intensity required to validate beacon presence |
+| **Settling Delay** | 5 ms | Transient settling time between motor stop and ADC read |
 
 ---
 
-## 4. Power & Thermal Optimization (`stepper_release`)
+## 4. Backlash Compensation & Thermal Management
 
-Holding a unipolar stepper motor energized at rest draws over $350\text{ mA}$, causing rapid heating of the ULN2003 Darlington transistor array. 
+### 4.1 Mechanical Backlash Mitigation
+The 28BYJ-48 stepper motor's internal 1:64 reduction gearbox exhibits $\approx 1.4^\circ$ of mechanical gear play. To prevent hysteresis error when reversing direction after the fine scan:
+1. The platform rotates counter-clockwise (CCW) past the fine peak by 16 half-steps ($1.406^\circ$).
+2. The platform rotates clockwise (CW) back into the final peak position.
+This ensures all gear teeth are engaged in the forward drive direction, yielding a repeatable final positioning accuracy of $\le \pm 1$ step.
 
-Once alignment is completed, `alignment_runFullScan()` executes `stepper_release()`, setting all 4 control pins (IN1--IN4) to `LOW`. The internal 1:64 reduction gearbox of the 28BYJ-48 motor provides mechanical holding torque, holding platform orientation while reducing idle power consumption to **0 mW**.
+### 4.2 Thermal Management (`stepper_release`)
+Holding unipolar stepper motor coils continuously energized draws $>350\text{ mA}$, causing thermal dissipation in the ULN2003 driver. 
+
+Upon completing alignment, `alignment_runFullScan()` calls `stepper_release()`, setting all four driver pins (IN1--IN4) to `LOW`. The 1:64 gearbox reduction provides sufficient holding torque to prevent platform drift, dropping idle power consumption to **0 mW**.
