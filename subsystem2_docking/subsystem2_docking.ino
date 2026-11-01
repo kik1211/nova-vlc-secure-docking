@@ -22,7 +22,7 @@
  */
 
 #include "config.h"
-#include "docking/alignment_controller.h"
+#include "src/docking/alignment_controller.h"
 
 /**
  * @brief   Arduino setup entry point.

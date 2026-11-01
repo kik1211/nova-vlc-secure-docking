@@ -27,7 +27,7 @@
  */
 
 #include "config.h"
-#include "auth/auth_state_machine.h"
+#include "src/auth/auth_state_machine.h"
 
 /**
  * @brief   Arduino setup entry point.
