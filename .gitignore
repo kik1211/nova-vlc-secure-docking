@@ -1,5 +1,5 @@
 # Internal Workspace & Development Artifacts (Private - do NOT commit)
-internal/
+/internal/
 scratch/
 tmp/
 *.tmp
