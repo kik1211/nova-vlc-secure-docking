@@ -5,7 +5,7 @@
 
 <!-- See docs/VALIDATION_RESULTS.md for actual measured results. -->
 <!-- See validation/results/ for per-category detail files. -->
-<!-- See validation/logs/ for raw UART serial captures. -->
+<!-- Raw UART serial captures should be archived in validation/logs/ when available (directory currently contains no raw captures). -->
 <!-- See validation/test_harnesses/ for test sketch .ino files. -->
 
 ---
@@ -16,10 +16,10 @@
 |:---|:---|:---:|
 | Hardware Validation | HW-01 through HW-07 | 7 |
 | Firmware Validation | FW-01 through FW-05 | 5 |
-| Signal Processing | SP-01 through SP-05 | 5 |
+| Signal Processing | SP-01 through SP-04 | 4 |
 | Optical Tests | OPT-01 through OPT-04 | 4 |
 | Docking Tests | DK-01 through DK-05 | 5 |
-| Security Tests | SEC-01 through SEC-04 | 4 |
+| Security Tests | SEC-01 through SEC-05 | 5 |
 | **Total** | | **30** |
 
 ---
@@ -40,12 +40,12 @@ The validation suite explicitly includes negative testing scenarios to verify ve
 
 | Test ID | Scenario Description | Expected Outcome & Veto Logic | Validation Status |
 |:---|:---|:---|:---:|
-| **SEC-02** | Unregistered NFC Card UID | Immediate lockout (`AUTH_REASON_UNKNOWN_CARD`), FSM enters $2.0\text{ s}$ delay | **Harness PASS** |
-| **SEC-03** | Low ML Confidence ($<85\%$) | Vetoes unlock (`AUTH_REASON_ML_LOW_CONFIDENCE`), door remains LOCKED | **Harness PASS** |
-| **SEC-04** | Goertzel Frequency Mismatch | Vetoes unlock (`AUTH_REASON_GOERTZEL_MISMATCH`), door remains LOCKED | **Harness PASS** |
-| **SEC-05** | Ambiguous Optical Spectrum (Ratio $<2.0$) | Vetoes unlock (`AUTH_REASON_GOERTZEL_AMBIGUOUS`), door remains LOCKED | **Harness PASS** |
-| **HW-05** | ADC Saturation ($>3890$ counts) | Resets optical capture buffer, reports saturation warning | **Simulation PASS** |
-| **SP-06** | 50 Hz AC Mains Lighting Flicker | Filters out 50 Hz mains ripple, detects dominant $10\text{ Hz}/20\text{ Hz}/30\text{ Hz}$ key | **Harness PASS** |
+| **SEC-02** | Unregistered NFC Card UID | Immediate lockout (`AUTH_REASON_UNKNOWN_CARD`), FSM enters $2.0\text{ s}$ delay | **Host Model PASS** (`test_auth_fsm.py`) |
+| **SEC-03 / FW-05** | Low ML Confidence ($<85\%$) | Vetoes unlock (`AUTH_REASON_ML_LOW_CONFIDENCE`), door remains LOCKED | **Host Model PASS** (`test_auth_fsm.py` — shares identical scenario) |
+| **SEC-04** | Goertzel Frequency Mismatch | Vetoes unlock (`AUTH_REASON_GOERTZEL_MISMATCH`), door remains LOCKED | **Host Model PASS** (`test_auth_fsm.py`) |
+| **SEC-05** | Ambiguous Optical Spectrum (Ratio $<2.0$) | Vetoes unlock (`AUTH_REASON_GOERTZEL_AMBIGUOUS`), door remains LOCKED | **Host Model PASS** (`test_auth_fsm.py`) |
+| **SP suite — Group 5 (50 Hz mains flicker)** | 50 Hz AC Mains Lighting Flicker | Filters out 50 Hz mains ripple, detects dominant $10\text{ Hz}/20\text{ Hz}/30\text{ Hz}$ key | **Harness PASS** (`test_goertzel.py` sub-scenario) |
+| **Supplementary HAL Edge Case** *(outside 30-test count)* | ADC Saturation ($>3890$ counts) | Sets saturation flag, logs clipping warning | **Unverified on Hardware** (Threshold defined in `optical_sampler.cpp`, included in test sketch `test_ss1_hal.ino`; no raw log in repo) |
 
 ---
 
