@@ -11,9 +11,9 @@
  * 4. Label resolution matching (freq_10hz, freq_20hz, freq_30hz, noise)
  */
 
-#include "../subsystem1_secure_access/config.h"
-#include "../subsystem1_secure_access/hal/optical_sampler.h"
-#include "../subsystem1_secure_access/ml/classifier_wrapper.h"
+#include "../../subsystem1_secure_access/config.h"
+#include "../../subsystem1_secure_access/src/hal/optical_sampler.h"
+#include "../../subsystem1_secure_access/src/ml/classifier_wrapper.h"
 
 void printClassification(const ClassifierResult_t& res) {
     Serial.print("  Valid:       "); Serial.println(res.valid ? "YES" : "NO");

@@ -12,8 +12,8 @@
  */
 
 #include <math.h>
-#include "../subsystem1_secure_access/config.h"
-#include "../subsystem1_secure_access/dsp/goertzel.h"
+#include "../../subsystem1_secure_access/config.h"
+#include "../../subsystem1_secure_access/src/dsp/goertzel.h"
 
 void generateSyntheticSine(float* buffer, int n, float sampleRate, float signalFreq, float amplitude, float offset) {
     for (int i = 0; i < n; i++) {

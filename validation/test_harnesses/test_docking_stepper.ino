@@ -10,10 +10,10 @@
  * 3. Complete Two-Phase Alignment Scan Execution (Coarse + Fine)
  */
 
-#include "../subsystem2_docking/config.h"
-#include "../subsystem2_docking/hal/stepper_driver.h"
-#include "../subsystem2_docking/hal/photodiode_adc.h"
-#include "../subsystem2_docking/docking/alignment_controller.h"
+#include "../../subsystem2_docking/config.h"
+#include "../../subsystem2_docking/src/hal/stepper_driver.h"
+#include "../../subsystem2_docking/src/hal/photodiode_adc.h"
+#include "../../subsystem2_docking/src/docking/alignment_controller.h"
 
 void printMenu() {
     Serial.println("\n==========================================");

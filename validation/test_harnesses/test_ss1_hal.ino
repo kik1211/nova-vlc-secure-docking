@@ -10,10 +10,10 @@
  * 3. Relay Unlock & Auto-Relock Timing (HW-05)
  */
 
-#include "../subsystem1_secure_access/config.h"
-#include "../subsystem1_secure_access/hal/nfc_reader.h"
-#include "../subsystem1_secure_access/hal/optical_sampler.h"
-#include "../subsystem1_secure_access/hal/relay_lock.h"
+#include "../../subsystem1_secure_access/config.h"
+#include "../../subsystem1_secure_access/src/hal/nfc_reader.h"
+#include "../../subsystem1_secure_access/src/hal/optical_sampler.h"
+#include "../../subsystem1_secure_access/src/hal/relay_lock.h"
 
 void printMenu() {
     Serial.println("\n==========================================");
