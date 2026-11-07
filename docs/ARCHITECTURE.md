@@ -12,7 +12,7 @@ Navigational Optical Verification & Authentication (**N.O.V.A.**) is an embedded
 | Architecture Domain | Implementation | Status | Engineering Rationale |
 |:---|:---|:---:|:---|
 | **Sampling Engine** | 100.0 Hz `esp_timer` ISR ($N=100$ samples) | **Frozen** | Maps target frequencies (10, 20, 30 Hz) to exact integer DFT bins ($k=10, 20, 30$) with zero theoretical spectral leakage. |
-| **Authentication Gate** | Dual-verdict gate ($L_{\text{NFC}} \land \text{Conf}_{\text{ML}} \land M_{\text{Goertzel}}$) | **Frozen** | Prevents false unlocks by requiring agreement between probabilistic neural network inference and deterministic Goertzel DSP. |
+| **Authentication Gate** | Dual-verdict gate (NFC ∧ TinyML ∧ Goertzel) | **Frozen** | Prevents false unlocks by requiring agreement between probabilistic neural network inference and deterministic Goertzel DSP. |
 | **Subsystem Decoupling** | Dual microcontroller hardware modules | **Frozen** | Isolates stepper motor inductive switching noise ($>300\text{ mA}$) from sensitive analog photodiode transimpedance amplification. |
 | **Analog Front-End** | LM358 single-supply $+3.3\text{ V}$ TIA ($R_f=100\text{ k}\Omega$) | **Frozen** | Limits maximum op-amp output voltage to $\approx 1.8\text{ V}$, protecting the ESP32-S3 ADC pin against overvoltage damage. |
 | **Edge Classifier** | Edge Impulse spectral analysis + 534-parameter Dense NN | **Experimental** | On-device inference verifying optical key waveforms; integer quantization evaluated for future builds. |

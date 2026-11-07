@@ -16,7 +16,7 @@
 | **TinyML Inference Latency** | Measured $\approx 2.14\text{ ms}$ ($2,140\ \mu\text{s}$) | Vector-accelerated spectral feature extraction + Dense MLP inference on Xtensa LX7 |
 | **Model Size & Memory Footprint** | $534\text{ parameters}$ ($2.1\text{ KB}$ weights, $2.9\text{ KB}$ arena) | Lightweight footprint executing within internal SRAM |
 | **Angular Scanning Resolution** | $0.08789^\circ / \text{step}$ ($4096\text{ half-steps/rev}$) | Angular step resolution of 1:64 geared unipolar stepper in 8-phase drive mode |
-| **Security Verification (Harness)** | 0 False Unlocks in Test Suite | Dual-verdict gate ($L_{\text{NFC}} \land \text{Conf}_{\text{ML}} \land M_{\text{Goertzel}}$) enforces independent confirmation |
+| **Security Verification (Harness)** | 0 False Unlocks in Test Suite | Dual-verdict gate (NFC verified ∧ ML confidence ≥ 85% ∧ Goertzel match) enforces independent confirmation |
 
 ---
 
@@ -169,7 +169,7 @@ For full technical specifications, see [`docs/README.md`](docs/README.md):
 **Answer:** No. In the current N.O.V.A. prototype, Subsystem 1 and Subsystem 2 operate as **independent standalone hardware modules**. Inter-MCU serial communication (e.g., optically isolated UART or ESP-NOW) is designated as a planned engineering improvement.
 
 #### Q7: Why use two-factor authentication (NFC + VLC)?
-**Answer:** Single-factor NFC cards can be cloned, lost, or stolen. Single-factor VLC optical keyfobs could be intercepted if pointed carelessly. Requiring both physical possession of a registered NFC card AND optical alignment to a key transmitter configured to the cardholder's role enforces two-factor physical access security ($L_{\text{NFC}} \land L_{\text{VLC}}$).
+**Answer:** Single-factor NFC cards can be cloned, lost, or stolen. Single-factor VLC optical keyfobs could be intercepted if pointed carelessly. Requiring both physical possession of a registered NFC card AND optical alignment to a key transmitter configured to the cardholder's role enforces two-factor physical access security (NFC ∧ VLC).
 
 ---
 
