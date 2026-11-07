@@ -7,34 +7,84 @@ on:
       - 'subsystem1_secure_access/**'
       - 'subsystem2_docking/**'
       - 'NOVA_Secure_Lock_inferencing/**'
+      - 'validation/**'
+      - '.github/workflows/**'
   pull_request:
     branches: [ main, develop ]
     paths:
       - 'subsystem1_secure_access/**'
       - 'subsystem2_docking/**'
+      - 'NOVA_Secure_Lock_inferencing/**'
+      - 'validation/**'
+      - '.github/workflows/**'
+
+permissions:
+  contents: read
 
 jobs:
-  compile-subsystem1:
-    name: Compile SS1 (ESP32-S3)
-    runs-on: ubuntu-latest
+  host-validation:
+    name: Host Behavioral Validation
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Run Auth FSM behavioral model tests (7 tests)
+        run: python validation/test_harnesses/test_auth_fsm.py
+
+      - name: Run Goertzel DSP behavioral model tests (6 test groups)
+        run: python validation/test_harnesses/test_goertzel.py
+
+  compile-subsystem1:
+    name: Compile SS1 (ESP32-S3)
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
 
       - name: Set up Arduino CLI
-        uses: arduino/setup-arduino-cli@v1
+        uses: arduino/setup-arduino-cli@v2
+        with:
+          version: "1.5.1"
+
+      - name: Print Arduino CLI version
+        run: arduino-cli version
+
+      - name: Cache ESP32 core packages
+        id: cache-esp32-packages
+        uses: actions/cache@v6
+        with:
+          path: ~/.arduino15/packages
+          key: ${{ runner.os }}-arduino-cli-1.5.1-esp32-core-3.3.12
+          restore-keys: |
+            ${{ runner.os }}-arduino-cli-1.5.1-esp32-core-
 
       - name: Install ESP32 board package
         run: |
-          arduino-cli config init
+          arduino-cli config init --overwrite
           arduino-cli config add board_manager.additional_urls \
             https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
           arduino-cli core update-index
-          arduino-cli core install esp32:esp32
+          if ! arduino-cli core list | grep -q "esp32:esp32.*3.3.12"; then
+            echo "ESP32 core 3.3.12 not found in cache. Installing..."
+            arduino-cli core install esp32:esp32@3.3.12
+          else
+            echo "ESP32 core 3.3.12 verified in cache."
+          fi
+          arduino-cli core list
 
-      - name: Install Adafruit PN532 library
-        run: arduino-cli lib install "Adafruit PN532"
+      - name: Install pinned Adafruit libraries
+        run: |
+          arduino-cli lib install "Adafruit BusIO@1.17.4"
+          arduino-cli lib install "Adafruit PN532@1.3.4"
+          arduino-cli lib list
 
       - name: Install Edge Impulse library (local)
         run: |
@@ -49,22 +99,42 @@ jobs:
 
   compile-subsystem2:
     name: Compile SS2 (ESP32)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Arduino CLI
-        uses: arduino/setup-arduino-cli@v1
+        uses: arduino/setup-arduino-cli@v2
+        with:
+          version: "1.5.1"
+
+      - name: Print Arduino CLI version
+        run: arduino-cli version
+
+      - name: Cache ESP32 core packages
+        id: cache-esp32-packages
+        uses: actions/cache@v6
+        with:
+          path: ~/.arduino15/packages
+          key: ${{ runner.os }}-arduino-cli-1.5.1-esp32-core-3.3.12
+          restore-keys: |
+            ${{ runner.os }}-arduino-cli-1.5.1-esp32-core-
 
       - name: Install ESP32 board package
         run: |
-          arduino-cli config init
+          arduino-cli config init --overwrite
           arduino-cli config add board_manager.additional_urls \
             https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
           arduino-cli core update-index
-          arduino-cli core install esp32:esp32
+          if ! arduino-cli core list | grep -q "esp32:esp32.*3.3.12"; then
+            echo "ESP32 core 3.3.12 not found in cache. Installing..."
+            arduino-cli core install esp32:esp32@3.3.12
+          else
+            echo "ESP32 core 3.3.12 verified in cache."
+          fi
+          arduino-cli core list
 
       - name: Compile Subsystem 2
         run: |
