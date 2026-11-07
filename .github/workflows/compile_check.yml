@@ -96,6 +96,7 @@ jobs:
           arduino-cli compile \
             --fqbn esp32:esp32:esp32s3 \
             subsystem1_secure_access/subsystem1_secure_access.ino
+
       - name: Initialize validation sketch staging environment
         run: |
           STAGE_ROOT="${RUNNER_TEMP}/stage"
@@ -103,7 +104,7 @@ jobs:
           cp -r subsystem1_secure_access "${STAGE_ROOT}/"
           cp -r subsystem2_docking "${STAGE_ROOT}/"
 
-      - name: Stage and compile validation sketch: test_auth_fsm
+      - name: "Stage and compile validation sketch: test_auth_fsm"
         run: |
           STAGE_ROOT="${RUNNER_TEMP}/stage"
           SKETCH_DIR="${STAGE_ROOT}/validation/test_auth_fsm"
@@ -128,7 +129,7 @@ jobs:
             --verbose \
             "${SKETCH_DIR}"
 
-      - name: Stage and compile validation sketch: test_classifier
+      - name: "Stage and compile validation sketch: test_classifier"
         run: |
           STAGE_ROOT="${RUNNER_TEMP}/stage"
           SKETCH_DIR="${STAGE_ROOT}/validation/test_classifier"
@@ -149,7 +150,7 @@ jobs:
             --verbose \
             "${SKETCH_DIR}"
 
-      - name: Stage and compile validation sketch: test_goertzel
+      - name: "Stage and compile validation sketch: test_goertzel"
         run: |
           STAGE_ROOT="${RUNNER_TEMP}/stage"
           SKETCH_DIR="${STAGE_ROOT}/validation/test_goertzel"
@@ -169,7 +170,7 @@ jobs:
             --verbose \
             "${SKETCH_DIR}"
 
-      - name: Stage and compile validation sketch: test_ss1_hal
+      - name: "Stage and compile validation sketch: test_ss1_hal"
         run: |
           STAGE_ROOT="${RUNNER_TEMP}/stage"
           SKETCH_DIR="${STAGE_ROOT}/validation/test_ss1_hal"
@@ -236,6 +237,7 @@ jobs:
           arduino-cli compile \
             --fqbn esp32:esp32:esp32 \
             subsystem2_docking/subsystem2_docking.ino
+
       - name: Initialize validation sketch staging environment
         run: |
           STAGE_ROOT="${RUNNER_TEMP}/stage"
@@ -243,7 +245,7 @@ jobs:
           cp -r subsystem1_secure_access "${STAGE_ROOT}/"
           cp -r subsystem2_docking "${STAGE_ROOT}/"
 
-      - name: Stage and compile validation sketch: test_docking_stepper
+      - name: "Stage and compile validation sketch: test_docking_stepper"
         run: |
           STAGE_ROOT="${RUNNER_TEMP}/stage"
           SKETCH_DIR="${STAGE_ROOT}/validation/test_docking_stepper"
