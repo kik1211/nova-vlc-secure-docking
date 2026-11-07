@@ -10,8 +10,8 @@
  * 3. Step-by-step state transition logging
  */
 
-#include "../subsystem1_secure_access/config.h"
-#include "../subsystem1_secure_access/auth/auth_state_machine.h"
+#include "../../subsystem1_secure_access/config.h"
+#include "../../subsystem1_secure_access/src/auth/auth_state_machine.h"
 
 const char* stateToString(AuthState_t state) {
     switch (state) {

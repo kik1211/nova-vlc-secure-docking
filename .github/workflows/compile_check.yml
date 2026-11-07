@@ -97,6 +97,102 @@ jobs:
             --fqbn esp32:esp32:esp32s3 \
             subsystem1_secure_access/subsystem1_secure_access.ino
 
+      - name: Initialize validation sketch staging environment
+        run: |
+          STAGE_ROOT="${RUNNER_TEMP}/stage"
+          mkdir -p "${STAGE_ROOT}"
+          cp -r subsystem1_secure_access "${STAGE_ROOT}/"
+          cp -r subsystem2_docking "${STAGE_ROOT}/"
+
+      - name: "Stage and compile validation sketch: test_auth_fsm"
+        run: |
+          STAGE_ROOT="${RUNNER_TEMP}/stage"
+          SKETCH_DIR="${STAGE_ROOT}/validation/test_auth_fsm"
+          rm -rf "${SKETCH_DIR}"
+          mkdir -p "${SKETCH_DIR}/src/auth" "${SKETCH_DIR}/src/dsp" "${SKETCH_DIR}/src/hal" "${SKETCH_DIR}/src/ml"
+
+          cp validation/test_harnesses/test_auth_fsm.ino "${SKETCH_DIR}/test_auth_fsm.ino"
+          cp subsystem1_secure_access/config.h "${SKETCH_DIR}/config.h"
+
+          cp subsystem1_secure_access/src/auth/auth_state_machine.* "${SKETCH_DIR}/src/auth/"
+          cp subsystem1_secure_access/src/dsp/goertzel.* "${SKETCH_DIR}/src/dsp/"
+          cp subsystem1_secure_access/src/hal/nfc_reader.* "${SKETCH_DIR}/src/hal/"
+          cp subsystem1_secure_access/src/hal/optical_sampler.* "${SKETCH_DIR}/src/hal/"
+          cp subsystem1_secure_access/src/hal/relay_lock.* "${SKETCH_DIR}/src/hal/"
+          cp subsystem1_secure_access/src/ml/classifier_wrapper.* "${SKETCH_DIR}/src/ml/"
+
+          echo "Staged translation units for test_auth_fsm:"
+          find "${SKETCH_DIR}/src" -type f
+
+          arduino-cli compile \
+            --fqbn esp32:esp32:esp32s3 \
+            --verbose \
+            "${SKETCH_DIR}"
+
+      - name: "Stage and compile validation sketch: test_classifier"
+        run: |
+          STAGE_ROOT="${RUNNER_TEMP}/stage"
+          SKETCH_DIR="${STAGE_ROOT}/validation/test_classifier"
+          rm -rf "${SKETCH_DIR}"
+          mkdir -p "${SKETCH_DIR}/src/hal" "${SKETCH_DIR}/src/ml"
+
+          cp validation/test_harnesses/test_classifier.ino "${SKETCH_DIR}/test_classifier.ino"
+          cp subsystem1_secure_access/config.h "${SKETCH_DIR}/config.h"
+
+          cp subsystem1_secure_access/src/hal/optical_sampler.* "${SKETCH_DIR}/src/hal/"
+          cp subsystem1_secure_access/src/ml/classifier_wrapper.* "${SKETCH_DIR}/src/ml/"
+
+          echo "Staged translation units for test_classifier:"
+          find "${SKETCH_DIR}/src" -type f
+
+          arduino-cli compile \
+            --fqbn esp32:esp32:esp32s3 \
+            --verbose \
+            "${SKETCH_DIR}"
+
+      - name: "Stage and compile validation sketch: test_goertzel"
+        run: |
+          STAGE_ROOT="${RUNNER_TEMP}/stage"
+          SKETCH_DIR="${STAGE_ROOT}/validation/test_goertzel"
+          rm -rf "${SKETCH_DIR}"
+          mkdir -p "${SKETCH_DIR}/src/dsp"
+
+          cp validation/test_harnesses/test_goertzel.ino "${SKETCH_DIR}/test_goertzel.ino"
+          cp subsystem1_secure_access/config.h "${SKETCH_DIR}/config.h"
+
+          cp subsystem1_secure_access/src/dsp/goertzel.* "${SKETCH_DIR}/src/dsp/"
+
+          echo "Staged translation units for test_goertzel:"
+          find "${SKETCH_DIR}/src" -type f
+
+          arduino-cli compile \
+            --fqbn esp32:esp32:esp32s3 \
+            --verbose \
+            "${SKETCH_DIR}"
+
+      - name: "Stage and compile validation sketch: test_ss1_hal"
+        run: |
+          STAGE_ROOT="${RUNNER_TEMP}/stage"
+          SKETCH_DIR="${STAGE_ROOT}/validation/test_ss1_hal"
+          rm -rf "${SKETCH_DIR}"
+          mkdir -p "${SKETCH_DIR}/src/hal"
+
+          cp validation/test_harnesses/test_ss1_hal.ino "${SKETCH_DIR}/test_ss1_hal.ino"
+          cp subsystem1_secure_access/config.h "${SKETCH_DIR}/config.h"
+
+          cp subsystem1_secure_access/src/hal/nfc_reader.* "${SKETCH_DIR}/src/hal/"
+          cp subsystem1_secure_access/src/hal/optical_sampler.* "${SKETCH_DIR}/src/hal/"
+          cp subsystem1_secure_access/src/hal/relay_lock.* "${SKETCH_DIR}/src/hal/"
+
+          echo "Staged translation units for test_ss1_hal:"
+          find "${SKETCH_DIR}/src" -type f
+
+          arduino-cli compile \
+            --fqbn esp32:esp32:esp32s3 \
+            --verbose \
+            "${SKETCH_DIR}"
+
+
   compile-subsystem2:
     name: Compile SS2 (ESP32)
     runs-on: ubuntu-24.04
@@ -141,3 +237,32 @@ jobs:
           arduino-cli compile \
             --fqbn esp32:esp32:esp32 \
             subsystem2_docking/subsystem2_docking.ino
+
+      - name: Initialize validation sketch staging environment
+        run: |
+          STAGE_ROOT="${RUNNER_TEMP}/stage"
+          mkdir -p "${STAGE_ROOT}"
+          cp -r subsystem1_secure_access "${STAGE_ROOT}/"
+          cp -r subsystem2_docking "${STAGE_ROOT}/"
+
+      - name: "Stage and compile validation sketch: test_docking_stepper"
+        run: |
+          STAGE_ROOT="${RUNNER_TEMP}/stage"
+          SKETCH_DIR="${STAGE_ROOT}/validation/test_docking_stepper"
+          rm -rf "${SKETCH_DIR}"
+          mkdir -p "${SKETCH_DIR}/src/docking" "${SKETCH_DIR}/src/hal"
+
+          cp validation/test_harnesses/test_docking_stepper.ino "${SKETCH_DIR}/test_docking_stepper.ino"
+          cp subsystem2_docking/config.h "${SKETCH_DIR}/config.h"
+
+          cp subsystem2_docking/src/docking/alignment_controller.* "${SKETCH_DIR}/src/docking/"
+          cp subsystem2_docking/src/hal/photodiode_adc.* "${SKETCH_DIR}/src/hal/"
+          cp subsystem2_docking/src/hal/stepper_driver.* "${SKETCH_DIR}/src/hal/"
+
+          echo "Staged translation units for test_docking_stepper:"
+          find "${SKETCH_DIR}/src" -type f
+
+          arduino-cli compile \
+            --fqbn esp32:esp32:esp32 \
+            --verbose \
+            "${SKETCH_DIR}"
